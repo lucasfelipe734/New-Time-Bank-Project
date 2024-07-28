@@ -1,0 +1,19 @@
+Acessar o projeto no navegador
+
+### http:localhost:8080
+
+UInstalar o modulo para reiniciar o servidor sempre que houver alteração no código fonte, g significa globalmente.
+
+### npm install -q nodemon
+### npm install --save-dev nodemon
+
+Rodar o projeto ccom nodemon
+
+### nodemon app.js //nome do index do projeto
+
+Sequelize é uma biblioteca javascript que facilicta o gerenciamento de banco de dados SQL 
+
+## npm install --save sequelize
+
+Instalar o drive do banco de dados
+### npm install --save mysql2
