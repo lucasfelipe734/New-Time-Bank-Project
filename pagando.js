@@ -47,9 +47,10 @@ document.addEventListener('pagar-container', function (e) {
           break;
           
           default:
-            //continua tranferindo porque o form actio no pagar obriga a pagina a tranferir
             alert("Código de barras inexistente!");
+            event.preventDefault();
             return false;
+  
         }
   }
         function pagando(){
