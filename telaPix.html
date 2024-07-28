@@ -1,0 +1,176 @@
+<html lang="pt"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix - New Bank Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /*div do quadrado central*/
+        .pix-container {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .logo {
+            float: right;
+            margin-bottom: 45px;
+            display: flex;
+            margin-top: 0px;
+        }
+        
+        .logo img {
+            max-width: 68px;
+        }
+        .seta {
+            float: left;
+            margin-bottom: 45px;
+            display: flex;
+            margin-top: 24px;
+        }
+        
+        .seta img {
+            max-width: 12px;
+        }
+        /*texto PIX no topo junto com a logo*/
+        .operacao-pix {
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: left;
+            margin-left: 19px;
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        /*linhas para separação de entrada dos textos*/
+
+        .form-group input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-bottom: 2px solid #bd0f83;
+            outline: none;
+            margin-top: 30px;
+            
+        }
+        
+        /*texto dentro do forms*/
+        .form-group input::placeholder {
+            color: #5a0606;
+        }
+        
+        .continuarPagamento-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 40px;
+        }
+        input {
+            width: 250px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            outline: none; /* Remove a borda de foco padrão */
+        }
+        /*linha abaixo do PIX*/
+        hr{
+            margin-top: 15px;
+            margin-bottom: 45px;
+            margin-left: 19px;
+            height: 1px;
+            background: #bd0f83;
+        }
+        button {
+            background-color: #bd0f83; /* Cor de rosa */
+            border: none;
+            border-radius: 10px; /* Borda arredondada */
+            padding: 5px 10px; /* Espaçamento interno */
+            margin-top: 20px; /* Um pouco mais pra baixo */
+            font-weight: arial; /* Texto mais negrito */
+        }
+
+        /* Estilo ao passar o mouse sobre o botão */
+        button:hover {
+            background-color: #ff1493; /* Cor de rosa mais escura ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="pix-container">
+            <div class="seta">
+                <img src="img/seta.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'menu.html'">
+                </div>
+        <div class="operacao-pix">
+            ÁREA PIX
+            <div class="logo">
+            <img src="img/logoB.png" alt="Logo New Time Bank">
+            </div>
+        </div>
+        <hr size="2">
+        <form id="transferForm">
+            <form>
+            <input type="text" id="chavePixRemetente" placeholder="Informe seu cpf">
+            <input type="text" id="chavePixDestinatario" placeholder="Informe a chave pix">
+            <input type="text" id="valor" placeholder="Informe o valor">
+            
+            <button  
+            type="button" onclick="realizarTransferenciaPIX()">Realizar Transferência</button>
+        </form>
+        <p id="mensagem"></p>
+    
+        <script>
+            function realizarTransferenciaPIX() {
+
+                
+                const chavePixRemetente = document.getElementById('chavePixRemetente').value;
+                const chavePixDestinatario = document.getElementById('chavePixDestinatario').value;
+                const valor = parseFloat(document.getElementById('valor').value);
+    
+                fetch('/transferencia-pix', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chavePixRemetente,
+                        chavePixDestinatario,
+                        valor
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('mensagem').textContent = 'Transferência PIX realizada com sucesso!';
+                    } else {
+                        document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência PIX: ' + data.error;
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência PIX: ' + error;
+                });
+            }
+        </script>
+    </body>
+    </html>
+

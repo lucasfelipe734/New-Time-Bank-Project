@@ -1,36 +1,78 @@
 const express = require('express');
-const path = require('path'); //lendo arquivos do diretorio
-const app = express(); //gerencia rotas requisições e executar projeto
+const path = require('path');
+const app = express();
+const port = 8000;
 
-const db = require('./models/db');
-
-//app.get("/", async (req, res) => { res.sendFile(__dirname + "/Index.html") });
+const db = require('./models/database'); // Importe o módulo da conexão com o banco de dados
 
 app.use(express.static(path.join(__dirname)));
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
+//BackEnd - Chamada ao banco tela de login
 
 app.post("/dado", async (req, res) => {
+    console.log("minha requisicao");
+    console.log(req.body);
 
-    console.log("minha requisicao")
-    console.log(req.body)
-
-
-    const query = "SELECT * FROM cliente WHERE cpf=\'" + req.body.cpf + "\'" + " AND " + "senha=\'" + req.body.senha + "\'" 
-
-    db.query(query, (err, data) => {
-        console.log(data)
-        if (data.length != 0) {
-            res.send('true')
+    const query = "SELECT * FROM cliente WHERE cpf=? AND senha=?";
+    
+    try {
+        const [rows, fields] = await db.query(query, [req.body.cpf, req.body.senha]);
+        
+        console.log(rows);
+        if (rows.length !== 0) {
+            res.send('true');
         } else {
-            res.send('false')
+            res.send('false');
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Erro interno do servidor');
+    }
+});
+
+
+//BackEnd - Chamada ao banco PIX
+app.post('/transferencia-pix', async (req, res) => {
+    const { chavePixRemetente, chavePixDestinatario, valor } = req.body;
+
+    const connection = await db.getConnection(); // Use a conexão do módulo de banco de dados
+
+    try {
+        await connection.beginTransaction();
+
+        const [remetente] = await connection.execute('SELECT * FROM contas WHERE chave_pix = ?', [chavePixRemetente]);
+        const [destinatario] = await connection.execute('SELECT * FROM contas WHERE chave_pix = ?', [chavePixDestinatario]);
+
+        if (remetente.length === 0 || destinatario.length === 0) {
+            throw new Error('Conta remetente ou destinatário não encontrada.');
         }
 
-    });
+        if (remetente[0].saldo < valor) {
+            throw new Error('Saldo insuficiente para realizar a transferência.');
+        }
 
-}); //Post não da para acesstar através do navegador
+        await connection.execute('UPDATE contas SET saldo = saldo - ? WHERE chave_pix = ?', [valor, chavePixRemetente]);
+        await connection.execute('UPDATE contas SET saldo = saldo + ? WHERE chave_pix = ?', [valor, chavePixDestinatario]);
+
+        await connection.commit();
+
+        res.json({ success: true });
+    } catch (error) {
+        await connection.rollback();
+        res.json({ success: false, error: error.message });
+    } finally {
+        connection.release();
+    }
+});
 
 
-app.listen(8000, () => {
-    console.log("Servidor iniciado na porta 8080: http://localhost:8000");
-})
+
+app.use(express.static('public'));
+
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+});
+

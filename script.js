@@ -15,7 +15,7 @@ function enviarDados() {
     .then(response => response.text())
     .then(data => {
         if(data == 'true'){
-            window.location.href = "/index2.html";
+            window.location.href = "/telaBoasVindas.html";
         }else{
             alert("Usuário Invalido")
         }
