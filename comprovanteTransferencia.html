@@ -1,0 +1,313 @@
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - New Bank Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: rgb(255, 255, 255);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*div do quadrado central*/
+        .pagar-container {
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+
+        .topo {
+            text-align: left;
+            margin-bottom: 15px;
+            display: flex;
+            margin-top: 45px;
+        }
+
+        .topo img {
+            max-width: 290px;
+        }
+
+        .fechar {
+            float: right;
+            margin-bottom: 45px;
+            display: flex;
+            margin-top: 12px;
+        }
+
+        .fechar img {
+            max-width: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        hr {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+            height: 1px;
+            background: rgb(255, 254, 254);
+        }
+
+        p {
+            margin-bottom: 5px;
+            text-align: left;
+            color: white;
+        }
+
+        #p1 {
+            text-align: center;
+            font-weight: bolder;
+            margin-top: 5px;
+            margin-bottom: 2px;
+        }
+
+        #p3 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p4 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p5 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p6 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p7 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p8 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p88 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p9 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p10 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p11 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p12 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p13 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p14 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p15 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+        #p16 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+
+        }
+
+        #p17 {
+            color: gray;
+            font-size: smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+
+        #p18 {
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pagar-container">
+        <div class="fechar">
+            <img src="img/fechar.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'pagar.html'">
+        </div>
+        <div class="topo">
+            <img src="img/topo.png" alt="Cabeçalho New Time Bank">
+            <hr size="2">
+        </div>
+        <div>
+            <p id="p1">Comprovante de transferencia</p>
+            <p id="p3">Pagamento realizado</p>
+            <p>R$ <span id="p4"></span></p>
+            <hr size="1">
+            <p id="p5">Identificação de pagamento</p>
+            <p id="p6"> Nome do pagador</p>
+            <p id="p88"></p>
+            <p id="p8">Conta remetente</p>
+            <p id="p9"> 111.111.111-11</p>
+            <p id="p10">Instituição</P>
+            <p id="p11">New Time Bank - Conta Digital</p>
+            <hr size="1">
+
+            <P id="p12">Dados</P>
+            <p id="p13">Conta Favorecido </p>
+            <p id="p14"></p>
+            <p id="p17">Meio de pagamento</P>
+            <p id="p18">Transferencia Bancaria</p>
+            <p id="p16"> Data de pagamento</p>
+            <p id="p15"> 00/00/0000 ás 00:00 horas</p>
+
+
+
+
+        </div>
+        <script>
+            // Declarar as variáveis necessárias
+            const nomeDoClientetranf = localStorage.getItem('nomeDoCliente');
+            const remetentetransf1 = localStorage.getItem('comprovaTransferRemetente');
+            const destinatariotransf = localStorage.getItem('comprovaTransferDestinatario');
+            const valortransf = localStorage.getItem('comprovavalorTransfer');
+
+            //container para ficar travado igual a foto
+            document.addEventListener('login-container', function (e) {
+                e.preventDefault();
+            });
+
+            // Cria uma variável JavaScript 
+            const nometransf = localStorage.getItem('nomeDoCliente');
+
+            function mostrarNome(nometransf) {
+                return `${nometransf}`;
+            }
+            document.getElementById("p88").innerHTML = mostrarNome(nometransf);
+
+
+            // Cria uma variável JavaScript 
+            const valortransf2 = valortransf;
+
+            function mostrar(valortransf2) {
+                return `${valortransf2}`;
+            }
+            document.getElementById("p4").innerHTML = mostrar(valortransf2);
+
+
+            // Cria uma variável JavaScript
+            const remetentetransf2 = remetentetransf1;
+
+            function mostrar2(remetentetransf2) {
+                return `${remetentetransf2}`;
+            }
+            document.getElementById("p9").innerHTML = mostrar2(remetentetransf2);
+
+
+            // Cria uma variável JavaScript com um valor em número
+            const destinatario2 = destinatariotransf;
+
+
+            function mostrar3(destinatario2) {
+                return `${destinatario2}`;
+            }
+            document.getElementById("p14").innerHTML = mostrar3(destinatario2);
+
+            function atualizarDataHora() {
+                var data = new Date();
+                var diaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira",
+                    "Sexta-feira", "Sábado"
+                ];
+
+                var dia = data.toLocaleString('pt-BR', {
+                    day: '2-digit'
+                });
+                var mes = data.toLocaleString('pt-BR', {
+                    month: '2-digit'
+                });
+                var ano = data.getFullYear();
+                var hora = data.getHours();
+                var minutos = data.getMinutes();
+                var segundos = data.getSeconds();
+
+                // Formate a data e hora como desejar
+                var dataFormatada = diaSemana[data.getDay()] + ", " + dia + "/" + mes + "/" + ano;
+                var horaFormatada = hora + ":" + minutos + ":" + segundos;
+
+                // Encontre o elemento pelo ID e atualize seu conteúdo
+                document.getElementById("p15").textContent = dataFormatada + " às " + horaFormatada;
+            }
+
+            // Chame a função para atualizar a data e hora assim que a página for carregada
+            window.onload = atualizarDataHora;
+        </script>
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+
 <html lang="pt"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,6 +94,13 @@
             height: 1px;
             background: black;
         }
+        /* Estilos para os elementos de exibição de informações */
+.info-display {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
     </style>
 </head>
 <body>
@@ -119,35 +127,52 @@
                 <input type="text" id="boleto" placeholder="Entre com o código de barras">
             </div>
             <button class="confirmacao-button" type="submit" id = "btnpagar">Continuar</button>
+            <!-- Adicione os seguintes elementos para exibir os dados -->
+            
+<div id="cnpjInfoDisplay" class="info-display"></div>
+<div id="razaoSocialInfoDisplay" class="info-display"></div>
+<div id="valorBoletoInfoDisplay" class="info-display"></div>
+<div id="bancoBoletoInfoDisplay" class="info-display"></div>
+
         </form>
         
     </div>
-    <script src="pagando.js"></script>
+    <script>
+// Quando o formulário for submetido
+document.getElementById("pagarForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita a recarga da página
+
+    const codigoBarras = document.getElementById("boleto").value;
+
+    // Fazer uma solicitação para buscar informações do boleto com base no código de barras
+    fetch(`/informacoes-boleto/${codigoBarras}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Atualize os elementos no HTML com as informações do boleto
+                document.getElementById("cnpjInfoDisplay").innerHTML = `CNPJ: ${data.cnpj}`;
+                document.getElementById("razaoSocialInfoDisplay").innerHTML = `Razão Social: ${data.razaoSocial}`;
+                document.getElementById("valorBoletoInfoDisplay").innerHTML = `Valor do Boleto: R$ ${data.valorBoleto}`;
+                document.getElementById("bancoBoletoInfoDisplay").innerHTML = `Banco do Boleto: ${data.bancoBoleto}`;
+            } else {
+                console.error('Erro ao buscar informações do boleto:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Erro na solicitação:', error);
+        });
+});
+
+
+
+    </script>
 </body>
 </html>
 
 
 <script>
-//antigo que descia o alert 
-// function validar() {
 
 
-    
-//     var codigoBarras = document.getElementById('boleto').value;
-
-//     var boleto = '5478121859687'
-//     var empresa = 'Enel'
-//     var TipoConta = 'Conta de Energia'
-//     var valor = '230,00'
-//     var datavencimento = '30/09/2023'
-
-//     if (codigoBarras === boleto ) { // Use '===' para comparar com uma string
-//        alert('Nº Boleto:' + boleto + '\nEmpresa:' +  empresa + '\nTipo de Conta:' + TipoConta + '\nValor:' + valor + '\nData de vendimento:' + datavencimento);
-//     } else {
-//         window.alert('Código de barras inexistente!');
-//         console.log(codigoBarras);
-//     }
-// }
    
 
 </script>
