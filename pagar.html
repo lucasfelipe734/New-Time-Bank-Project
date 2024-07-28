@@ -155,7 +155,7 @@ document.getElementById("pagarForm").addEventListener("submit", function (event)
                 document.getElementById("valorBoletoInfoDisplay").innerHTML = `Valor do Boleto: R$ ${data.valorBoleto}`;
                 document.getElementById("bancoBoletoInfoDisplay").innerHTML = `Banco do Boleto: ${data.bancoBoleto}`;
             } else {
-                console.error('Erro ao buscar informações do boleto:', data.error);
+                alert('Erro ao buscar informações do boleto:', data.error);
             }
         })
         .catch(error => {
