@@ -111,7 +111,7 @@ function enviarDados() {
             alert("Bem-vindo, " + nomeDoCliente);
             alert("Saldo: " + saldoDoCliente); // Exibir o saldo
 
-            window.location.href = "/menu.html";
+            window.location.href = "/telaBoasVindas.html";
 
             // Armazene o nomeDoCliente e saldoDoCliente no localStorage
             localStorage.setItem('nomeDoCliente', nomeDoCliente);

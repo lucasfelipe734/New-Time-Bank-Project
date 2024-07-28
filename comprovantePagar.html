@@ -194,37 +194,52 @@
             margin-top: 0px;
             font-size: large;
         }
+
+        button {
+            background-color: #bd0f83; /* Cor de rosa */
+            border: none;
+            border-radius: 10px; /* Borda arredondada */
+            padding: 5px 10px; /* Espaçamento interno */
+            margin-top: 20px; /* Um pouco mais pra baixo */
+            font-weight: arial; /* Texto mais negrito */
+        }
+
+        /* Estilo ao passar o mouse sobre o botão */
+        button:hover {
+            background-color: #ff1493; /* Cor de rosa mais escura ao passar o mouse */
+        }
+        
     </style>
 </head>
 
 <body>
     <div class="pagar-container">
         <div class="fechar">
-            <img src="img/fechar.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'telaTransferencia.html'">
+            <img src="img/fechar.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'pagar.html'">
         </div>
         <div class="topo">
             <img src="img/topo.png" alt="Cabeçalho New Time Bank">
             <hr size="2">
         </div>
         <div>
-            <p id="p1">Comprovante de transferencia</p>
+            <p id="p1">Comprovante de pagamento</p>
             <p id="p3">Pagamento realizado</p>
             <p>R$ <span id="p4"></span></p>
             <hr size="1">
             <p id="p5">Identificação de pagamento</p>
-            <p id="p6"> Nome do pagador</p>
+            <p id="p6">CNPJ</p>
             <p id="p88"></p>
-            <p id="p8">Conta remetente</p>
-            <p id="p9"> 111.111.111-11</p>
+            <p id="p8">Razão Social</p>
+            <p id="p9"></p>
             <p id="p10">Instituição</P>
-            <p id="p11">New Time Bank - Conta Digital</p>
+            <p id="p11"></p>
             <hr size="1">
 
             <P id="p12">Dados</P>
-            <p id="p13">Conta Favorecido </p>
+            <p id="p13"></p>
             <p id="p14"></p>
             <p id="p17">Meio de pagamento</P>
-            <p id="p18">Transferencia Bancaria</p>
+            <p id="p18">Boleto Bancário</p>
             <p id="p16"> Data de pagamento</p>
             <p id="p15"> 00/00/0000 ás 00:00 horas</p>
 
@@ -233,52 +248,54 @@
 
         </div>
         <script>
-            // Declarar as variáveis necessárias
-            const nomeDoClientetranf = localStorage.getItem('nomeDoCliente');
-            const remetentetransf1 = localStorage.getItem('comprovaTransferRemetente');
-            const destinatariotransf = localStorage.getItem('comprovaTransferDestinatario');
-            const valortransf = localStorage.getItem('comprovavalorTransfer');
 
+        
             //container para ficar travado igual a foto
             document.addEventListener('login-container', function (e) {
                 e.preventDefault();
             });
 
-            // Cria uma variável JavaScript 
-            const nometransf = localStorage.getItem('nomeDoCliente');
-
-            function mostrarNome(nometransf) {
-                return `${nometransf}`;
-            }
-            document.getElementById("p88").innerHTML = mostrarNome(nometransf);
+            const cnpjComprova = localStorage.getItem('cnpjInfo');
+            const razaoSocialComprova = localStorage.getItem('razaoSocialInfo');
+            const valorBoletoInfoPagarComprova = localStorage.getItem('valorBoletoInfo');
+            const bancoBoletoInfoPagarComprova = localStorage.getItem('bancoBoletoInfo');
 
 
             // Cria uma variável JavaScript 
-            const valortransf2 = valortransf;
+            const cnpjComprova2 = cnpjComprova
 
-            function mostrar(valortransf2) {
-                return `${valortransf2}`;
+            function mostrarNome(cnpjComprova2) {
+                return `${cnpjComprova2}`;
             }
-            document.getElementById("p4").innerHTML = mostrar(valortransf2);
+            document.getElementById("p88").innerHTML = mostrarNome(cnpjComprova2);
+
+
+            // Cria uma variável JavaScript 
+            const valorBoletoFunc = valorBoletoInfoPagarComprova;
+
+            function mostrar(valorBoletoFunc) {
+                return `${valorBoletoFunc}`;
+            }
+            document.getElementById("p4").innerHTML = mostrar(valorBoletoFunc);
 
 
             // Cria uma variável JavaScript
-            const remetentetransf2 = remetentetransf1;
+            const razaoSocialComprova2 = razaoSocialComprova;
 
-            function mostrar2(remetentetransf2) {
-                return `${remetentetransf2}`;
+            function mostrar2(razaoSocialComprova2) {
+                return `${razaoSocialComprova2}`;
             }
-            document.getElementById("p9").innerHTML = mostrar2(remetentetransf2);
+            document.getElementById("p9").innerHTML = mostrar2(razaoSocialComprova2);
 
 
             // Cria uma variável JavaScript com um valor em número
-            const destinatario2 = destinatariotransf;
+            const bancoBoletoInfoPagarComprova2 = bancoBoletoInfoPagarComprova;
 
 
-            function mostrar3(destinatario2) {
-                return `${destinatario2}`;
+            function mostrar3(bancoBoletoInfoPagarComprova2) {
+                return `${bancoBoletoInfoPagarComprova2}`;
             }
-            document.getElementById("p14").innerHTML = mostrar3(destinatario2);
+            document.getElementById("p11").innerHTML = mostrar3(bancoBoletoInfoPagarComprova2);
 
             function atualizarDataHora() {
                 var data = new Date();

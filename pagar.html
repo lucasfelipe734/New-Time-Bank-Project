@@ -1,5 +1,6 @@
+<html lang="pt">
 
-<html lang="pt"><head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagar - New Bank Time</title>
@@ -15,7 +16,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         /*div do quadrado central*/
         .pagar-container {
             background-color: rgb(255, 255, 255);
@@ -25,27 +26,29 @@
             width: 300px;
             text-align: center;
         }
-        
+
         .logo {
             float: right;
             margin-bottom: 45px;
             display: flex;
             margin-top: 0px;
         }
-        
+
         .logo img {
             max-width: 68px;
         }
+
         .seta {
             float: left;
             margin-bottom: 45px;
             display: flex;
             margin-top: 24px;
         }
-        
+
         .seta img {
             max-width: 12px;
         }
+
         /*texto PAGAR no topo junto com a logo*/
         .operacao-pagar {
             color: rgb(0, 0, 0);
@@ -55,11 +58,11 @@
             text-align: left;
             margin-left: 19px;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         /*linhas para separação de entrada dos textos*/
 
         .form-group input {
@@ -69,14 +72,14 @@
             border-bottom: 2px solid #bd0f83;
             outline: none;
             margin-top: 30px;
-            
+
         }
-        
+
         /*texto dentro do forms*/
         .form-group input::placeholder {
             color: #333;
         }
-        
+
         .confirmacao-button {
             background-color: #333;
             color: white;
@@ -86,37 +89,59 @@
             cursor: pointer;
             margin-top: 40px;
         }
+
         /*linha abaixo do PAGAR*/
-        hr{
+        hr {
             margin-top: 5px;
             margin-bottom: 45px;
             margin-left: 19px;
             height: 1px;
             background: black;
         }
-        /* Estilos para os elementos de exibição de informações */
-.info-display {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
 
+        /* Estilos para os elementos de exibição de informações */
+        .info-display {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #bd0f83;
+            /* Cor de rosa */
+            border: none;
+            border-radius: 5px;
+            /* Borda arredondada */
+            padding: 5px 10px;
+            /* Espaçamento interno */
+            margin-top: 20px;
+            /* Um pouco mais pra baixo */
+            font-weight: arial;
+            /* Texto mais negrito */
+        }
+
+        /* Estilo ao passar o mouse sobre o botão */
+        button:hover {
+            background-color: #ff1493;
+            /* Cor de rosa mais escura ao passar o mouse */
+        }
     </style>
 </head>
+
 <body>
     <div class="pagar-container">
-            <div class="seta">
-                <img src="img/seta.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'menu.html'">
-                </div>
+        <div class="seta">
+            <img src="img/seta.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'menu.html'">
+        </div>
 
         <div class="operacao-pagar">
             PAGAR
             <div class="logo">
-            <img src="img/logoB.png" alt="Logo New Time Bank">
+                <img src="img/logoB.png" alt="Logo New Time Bank">
             </div>
         </div>
         <hr size="2">
-        
+
         <!-- se tirar o form action nao funcionar o tranferimento.
          se colocar onsubmit=  return tal metodo ou pagina tambem nao funciona
         
@@ -126,55 +151,75 @@
             <div class="form-group">
                 <input type="text" id="boleto" placeholder="Entre com o código de barras">
             </div>
-            <button class="confirmacao-button" type="submit" id = "btnpagar">Continuar</button>
+            <button class="confirmacao-button" type="submit" id="btnpagar">Continuar</button>
             <!-- Adicione os seguintes elementos para exibir os dados -->
-            
-<div id="cnpjInfoDisplay" class="info-display"></div>
-<div id="razaoSocialInfoDisplay" class="info-display"></div>
-<div id="valorBoletoInfoDisplay" class="info-display"></div>
-<div id="bancoBoletoInfoDisplay" class="info-display"></div>
+
+            <div id="cnpjInfoDisplay" class="info-display"></div>
+            <div id="razaoSocialInfoDisplay" class="info-display"></div>
+            <div id="valorBoletoInfoDisplay" class="info-display"></div>
+            <div id="bancoBoletoInfoDisplay" class="info-display"></div>
 
         </form>
-        
+        <p id="mensagem"></p>
+
     </div>
+
     <script>
-// Quando o formulário for submetido
-document.getElementById("pagarForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita a recarga da página
+        // Quando o formulário for submetido
+        document.getElementById("pagarForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita a recarga da página
 
-    const codigoBarras = document.getElementById("boleto").value;
+            const codigoBarras = document.getElementById("boleto").value;;
 
-    // Fazer uma solicitação para buscar informações do boleto com base no código de barras
-    fetch(`/informacoes-boleto/${codigoBarras}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Atualize os elementos no HTML com as informações do boleto
-                document.getElementById("cnpjInfoDisplay").innerHTML = `CNPJ: ${data.cnpj}`;
-                document.getElementById("razaoSocialInfoDisplay").innerHTML = `Razão Social: ${data.razaoSocial}`;
-                document.getElementById("valorBoletoInfoDisplay").innerHTML = `Valor do Boleto: R$ ${data.valorBoleto}`;
-                document.getElementById("bancoBoletoInfoDisplay").innerHTML = `Banco do Boleto: ${data.bancoBoleto}`;
-            } else {
-                alert('Erro ao buscar informações do boleto:', data.error);
-            }
-        })
-        .catch(error => {
-            console.error('Erro na solicitação:', error);
+            // Fazer uma solicitação para buscar informações do boleto com base no código de barras
+            fetch(`/informacoes-boleto/${codigoBarras}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Atualize os elementos no HTML com as informações do boleto
+                        document.getElementById("cnpjInfoDisplay").innerHTML = `CNPJ: ${data.cnpj}`;
+                        document.getElementById("razaoSocialInfoDisplay").innerHTML =
+                            `Razão Social: ${data.razaoSocial}`;
+                        document.getElementById("valorBoletoInfoDisplay").innerHTML =
+                            `Valor do Boleto: R$ ${data.valorBoleto}`;
+                        document.getElementById("bancoBoletoInfoDisplay").innerHTML =
+                            `Banco do Boleto: ${data.bancoBoleto}`;
+
+                        localStorage.setItem("cnpjInfo", `${data.cnpj}`);
+                        localStorage.setItem("razaoSocialInfo", `${data.razaoSocial}`);
+                        localStorage.setItem("valorBoletoInfo", `${data.valorBoleto}`);
+                        localStorage.setItem("bancoBoletoInfo", `${data.bancoBoleto}`);
+
+                    } else {
+                        alert('Erro ao buscar informações do boleto:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na solicitação:', error);
+                });
+
+            const button = document.createElement('button');
+            button.textContent = 'Continuar';
+            button.addEventListener('click', function () {
+                window.location.href = 'confirmacaoPagamento.html';
+            });
+
+            // Adicione o botão ao seu documento
+            const mensagemDiv = document.getElementById('mensagem');
+            mensagemDiv.appendChild(button);
         });
-});
-
-
-
     </script>
 </body>
+
 </html>
 
 
 <script>
 
 
-   
+
 
 </script>
 </body>
+
 </html>
