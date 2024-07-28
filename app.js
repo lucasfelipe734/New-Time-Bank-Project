@@ -152,6 +152,28 @@ app.get('/informacoes-boleto/:codigoBarras', async (req, res) => {
 });
 
 
+app.post('/cadastro', (req, res) => {
+    const { name, CPF, dataNasc, email, tipoConta, password } = req.body;
+  
+    // Inserir dados no banco de dados
+    const sql = `INSERT INTO cadastro (name, cpf, dataNasc, email, tipoConta, password) VALUES (?, ?, ?, ?, ?, ?)`;
+    const values = [name, CPF, dataNasc, email, tipoConta, password];
+  
+    db.query(sql, values, (err, result) => {
+      if (err) {
+        console.error('Erro ao inserir dados no banco de dados:', err);
+        res.status(500).json({ error: 'Erro ao cadastrar usuário' });
+      } else {
+        console.log('Cadastro realizado com sucesso!');
+        res.status(200).json({ success: 'Cadastro realizado com sucesso!' });
+      }
+    });
+  });
+  
+  // Iniciar o servidor
+
+
+
 app.use(express.static('public'));
 
 app.listen(port, () => {
