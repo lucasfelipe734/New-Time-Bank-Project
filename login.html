@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - New Bank Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, black 50%, white 50%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /*div de entrada de dados*/
+        .login-container {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            max-width: 100px;
+        }
+
+        .bank-name {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /*linhas para separação de entrada dos textos*/
+
+        .form-group input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-bottom: 2px solid #bd0f83;
+            outline: none;
+            
+        }
+        
+        /*texto dentro do forms*/
+        .form-group input::placeholder {
+            color: #333;
+        }
+        
+        .login-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="bank-name">New Bank Time</div>
+    <div class="login-container">
+        <div class="logo">
+            <img src="/img/logoB.png" alt="Logo New Bank Time">
+        </div>
+
+        <!-- faltando script -->
+        <form action="seu_script_de_login.php" method="POST">
+            <div class="form-group">
+                <input type="text" name="cpf" placeholder="CPF" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+            <button class="login-button" type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
+

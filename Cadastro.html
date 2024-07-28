@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - New Time Bank</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, black 50%, rgb(0, 0, 0) 50%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*div de entrada de dados*/
+        .login-container :before {
+
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+            width: 300px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            /* Camada semitransparente */
+        }
+
+        /* .fotomenu {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            /* Camada semitransparente */
+        /* } */
+
+        */ .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 100px;
+        }
+
+        .cadastro-name {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="cadastro"></div>
+
+    <div class="login-container">
+        <div style="position: relative; display: inline-block;">
+
+
+            <!-- Foto inteira -->
+            <img src="img/cadastrocerto.png" alt="menu" style="pointer-events: none; user-drag: none;" display:
+                block; margin: 0 auto;>
+
+            <!-- Botão transparente para o link no topo da pagina -->
+            <button
+                style="position: absolute; top: 30px; left: 0; width: 100%; height: 40px; background: transparent; border: none;"
+                onclick="window.location.href='login.html'"></button>
+
+            <form id="register-form" action="/menu.html" method="get" onsubmit=" return validateForm()">
+                <div>
+                    <input type="text" name="name" id="name" placeholder="Nome completo"
+                        style="position: absolute; top: 185px; left: 30px; right: 40; width: 80%; height: 40px; background: transparent; border: none;"
+                        required>
+                </div>
+
+                <div>
+                    <input type="text" name="text" id="CPF" placeholder="CPF"
+                        style="position: absolute; top: 247px; left: 30px; right: 37; width: 80%; height: 40px; background: transparent; border: none;"
+                        required>
+                </div>
+
+                <div>
+                    <input type="text" name="data" id="dataNasc" placeholder="Data de Nascimento"
+                        style="position: absolute; top: 310px; left: 30px; right: 20%; width: 80%; height: 40px; background: transparent; border: none;"
+                        required>
+                </div>
+
+                <div>
+                    <input type="email" name="e-mail" id="email" placeholder="Endereço de E-mail"
+                        style="position: absolute; top: 370px; left: 30px; right: 20; width: 80%; height: 40px; background: transparent; border: none;"
+                        required>
+                </div>
+
+                <div class="escolheConta"
+                    style="position: absolute; top: 443px; left: 35px; right: 20; width: 100%; height: 40px; background: transparent; border: none;">
+                    <label for="tipoConta" style="color: rgb(124, 124, 124);">Escolha o tipo conta:</label>
+                    <select name="tipoConta" id="tipoConta" style="background: transparent; border: none;" required>
+                        <option value=""></option>
+                        <option value="1">Corrente</option>
+                        <option value="2">Poupança</option>
+                    </select>
+                </div>
+
+                <div class="ocultador"
+                    style="position: absolute; top: 490px; left: 25px; right: 20; width: 100%; height: 40px; background: transparent; border: none; ">
+                    <input type="password" name="password" id="password" placeholder="Senha" style="width: 81%; height: 25px; border-radius: 8px;" required>
+                </div>
+
+                <div class="ocultador"
+                    style="position: absolute; top: 518px; left: 25px; right: 20; width: 100%; height: 40px; background: transparent; border: none;">
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirmar senha" style="width: 81%; height: 25px; border-radius: 8px;"
+                        required>
+                </div>
+
+                <button class="login-button" type="submit" id="btncadastrar"
+                    style="position: absolute; top: 558px; left: 0; width: 100%; height: 40px; background: transparent; border: none;">
+                </button>
+
+            </form>
+
+
+            <!-- Final da pagina que ira para o login -->
+
+            <button
+                style="position: absolute; top: 615px; left: 0; width: 100%; height: 40px; background: transparent; border: none;"
+                onclick="window.location.href='login.html'">
+            </button>
+
+
+            <script>
+                //container para ficar travado igual a foto
+                document.addEventListener('login-container', function (e) {
+                    e.preventDefault();
+                });
+
+                //função do seletor calendario
+                $(function () {
+                    $("#dataNasc").datepicker({
+                        dateFormat: "dd/mm/yy", // Formato da data
+                        onSelect: function (dateText) {
+                            $(this).val(
+                                dateText); // Preenche o campo de entrada com a data selecionada
+                        }
+                    });
+                });
+
+
+                //validação do form
+                function validateForm() {
+                    // Obter os valores dos campos
+                    var name = document.getElementById('name').value;
+                    var CPF = document.getElementById('CPF').value;
+                    var email = document.getElementById('email').value;
+                    var tipoConta = document.getElementById('tipoConta').value;
+                    var password = document.getElementById('password').value;
+                    var confirm_password = document.getElementById('confirm_password').value;
+
+                    // Validar se o campo tipoConta foi clicado
+                    if (tipoConta === "") {
+                        alert("Por favor, selecione um tipo de conta.");
+                        return false; // Impede o envio do formulário
+                    }
+
+                    //validação de senha entre os campos
+                    if (password !== confirm_password) {
+                        alert("As senhas não coincidem. Por favor, verifique.");
+                        return false;
+                    }
+                    // Validar se todos os campos estão preenchidos
+                    if (name === "" || CPF === "" || dataNasc === "" || email === "" || tipoConta === "" || password ===
+                        "" || confirm_password === "") {
+                        alert("Por favor, preencha todos os campos antes de enviar o formulário.");
+                        return false; // Impede o envio do formulário
+        }
+        
+        return true;
+    }
+
+    document.getElementById('btncadastrar').addEventListener('click', function (e) {
+        e.preventDefault(); // Impede o envio automático do formulário
+        var formIsValid = validateForm();
+        if (formIsValid) {
+            var isConfirmed = confirm("Cadastro efetuado com sucesso");
+            if (isConfirmed) {
+                // Redirecionar para a página de cadastro após a confirmação
+                window.location.href = "/menu.html";
+            }
+        }
+    });
+
+            </script>
+
+
+</body>
+
+</html>
