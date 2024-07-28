@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <script src="pagando.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - New Time Bank</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /*div de entrada de dados*/
+        .pagando-container :before {
+
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+            width: 300px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.5);
+            /* Camada semitransparente */
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="cadastro"></div>
+
+    <div class="pagando-container">
+        <div style="position: relative; display: inline-block;">
+
+            <!-- #region -->
+            <!-- Apresentar valor da variavel java script saldo-->
+            <H4 class="numero" id="numero"
+                style="position: absolute; top: 80px;  right: 30px;  width: 100%; height: 40px; text-align: right; color: rgb(0, 0, 0);">
+            </H4>
+
+            <!-- Cifrão em html-->
+            <H4
+                style="position: absolute; top: 80px;  right: 70px;  width: 100%; height: 40px; text-align: right; color: rgb(0, 0, 0);">
+                R$:</H4>
+
+            <!-- Apresentar valor da variavel numero da agencia java script valor na pagina pagar-->
+            <H4 class="numeroAgencia" id="numeroAgencia"
+                style="position: absolute; top: 75px;  left: 25px;  width: 100%; height: 40px; text-align: left; color: rgb(255, 255, 255);">
+            </H4>
+
+
+            <!-- Apresentar valor da variavel numero da conta java script valor na pagina pagar-->
+            <H4 class="numeroConta" id="numeroConta"
+                style="position: absolute; top: 75px;  left: 85px;  width: 100%; height: 40px; text-align: left; color: rgb(255, 255, 255);">
+            </H4>
+
+            <!-- Request dados pagamento-->
+            <h4 class="nomePagadorFinal" id="nomePagadorFinal"
+                style="position: absolute; top: 338px; left: 5px; width: 100%; height: 40px; background: transparent; border: none; padding-left: 12px;">
+            </h4>
+
+
+            <!-- Request dados pagamento-->
+            <h4 class="documentoDoPagadorFinal" id="documentoDoPagadorFinal"
+                style="position: absolute; top: 415px; left: 5px; width: 100%; height: 40px; background: transparent; border: none; padding-left: 12px;">
+            </h4>
+
+            <!-- Foto inteira -->
+            <img src="img/14.png" id="fotoPagando" height="600px" alt="menu" style="pointer-events: none; display:
+                block; margin: 0 auto;">
+        </div>
+
+        <!-- botão transparente para voltar  -->
+        <button
+            style="position: absolute; top: 70px; left: 0; width: 100%; height: 40px; background: transparent; border: none;"
+            onclick="window.location.href='menu.html'"></button>
+
+        <button
+            style="position: absolute; top: 580px; left: 0; width: 100%; height: 40px; background: transparent; border: none;"
+            onclick="window.location.href='confirmacaoPagamento.html'"></button>
+
+        <script>
+            //coitainer para ficar travado igual a foto, nunca mexer
+            document.addEventListener('login-container', function (e) {
+                e.preventDefault();
+            });
+
+
+            // Cria uma variável JavaScript com um valor que vai para o saldo mostrado no menu em número
+            const numero = 1000;
+
+            function mostrar(numero) {
+                return `${numero}`;
+            }
+
+            document.getElementById("numero").innerHTML = mostrar(numero);
+
+
+            // Cria uma variável JavaScript e apresenta 
+            const numeroAgencia = 1234;
+
+            function mostrar(numeroAgencia) {
+                return ` ${numeroAgencia}`;
+            }
+
+            document.getElementById("numeroAgencia").innerHTML = mostrar(numeroAgencia);
+
+
+            // Cria uma variável JavaScript e apresenta 
+            const numeroConta = 5467;
+
+            function mostrar(numeroConta) {
+                return ` ${numeroConta}`;
+            }
+
+            document.getElementById("numeroConta").innerHTML = mostrar(numeroConta);
+
+            
+            // Cria uma variável JavaScript e apresenta
+            const nomePagadorFinal = "Maria Santos";
+
+            function mostrar(nomePagadorFinal) {
+                return `${nomePagadorFinal}`;
+            }
+            document.getElementById("nomePagadorFinal").innerHTML = mostrar(nomePagadorFinal);
+
+
+            // Cria uma variável JavaScript e apresenta
+            const documentoDoPagadorFinal = "987.654.321-02";
+
+            function mostrar(documentoDoPagadorFinal) {
+                return `${documentoDoPagadorFinal}`;
+            }
+            document.getElementById("documentoDoPagadorFinal").innerHTML = mostrar(documentoDoPagadorFinal);
+
+
+
+
+        </script>
+</body>
+
+</html>
