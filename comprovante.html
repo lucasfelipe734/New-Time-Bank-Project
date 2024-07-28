@@ -1,0 +1,224 @@
+<html lang="pt"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - New Bank Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: rgb(255, 255, 255);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /*div do quadrado central*/
+        .pagar-container {
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .topo {
+            text-align: left;
+            margin-bottom: 15px;
+            display: flex;
+            margin-top: 45px;
+        }
+        
+        .topo img {
+            max-width: 290px;
+        }
+        .fechar {
+            float: right;
+            margin-bottom: 45px;
+            display: flex;
+            margin-top: 12px;
+        }
+        
+        .fechar img {
+            max-width: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        hr{
+            margin-top: 5px;
+            margin-bottom: 10px;
+            margin-left: 19px;
+            height: 1px;
+            background: rgb(255, 254, 254);
+        }
+        p{
+            margin-bottom: 5px;
+            text-align: left;
+            color: white;
+        }
+        #p1{
+            text-align: center;
+            font-weight: bolder;
+            margin-top: 5px;
+            margin-bottom: 2px;
+        }
+    
+        #p3{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p4{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p5{
+            color: gray;
+            font-size:medium;
+            margin-bottom: 5px;
+            font-weight: bolder;
+            margin-top: 5px;
+        }
+        #p6{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p7{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p8{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p9{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p10{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p11{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p12{
+            color: gray;
+            font-size:medium;
+            margin-bottom: 5px;
+            font-weight: bolder;
+            margin-top: 5px;
+        }
+        #p13{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p14{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p15{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p16{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+        #p17{
+            color: gray;
+            font-size:smaller;
+            margin-bottom: 5px;
+            font-weight: bolder;
+        }
+        #p18{
+            font-weight: bolder;
+            margin-bottom: 10px;
+            margin-top: 0px;
+            font-size: large;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="pagar-container">
+        <div class="fechar">
+            <img src="img/fechar.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'pagar.html'">
+        </div>
+        <div class="topo">
+        <img src="img/topo.png" alt="Cabeçalho New Time Bank">
+        <hr size="2">
+        </div>
+        <div>
+        <p id="p1">Comprovante de pagamento</p>
+        <p id="p3">Valor pago</p>
+        <p id="p4">R$00,00</p>
+        <hr size="1">
+        <p id="p5">Identificação de pagamento</p>
+        <p id="p6"> Para </p>
+        <p id="p7"> Nome do beneficiário</p>
+        <p id="p8"> CPF / CNPJ </p>
+        <p id="p9"> 111.111.111-11</p>
+        <p id="p10">Instituição</P>
+        <p id="p11">Banco</p>
+        <hr size="1">
+        <P id="p12">Dados do pagador</P>
+        <p id="p13"> De </p>
+        <p id="p14"> Nome do pagador</p>
+        <p id="p15"> CPF </p>
+        <p id="p16"> 111.111.111-11</p>
+        <p id="p17">Instituição</P>
+        <p id="p18">Banco</p>
+    </div>
+<script>
+   //transformando os dados dos paragrafos em variaveis
+   var valor = document.getElementById("p4");
+   var nomeBeneficiario = document.getElementById("p7");
+   var documentoBeneficiario = document.getElementById("p9");
+   var bancoBeneficiario = document.getElementById("p11");
+   var nome = document.getElementById("p14");
+   var cpf = document.getElementById("p16");
+   var banco = document.getElementById("p18");
+
+   //alterando os dados dentro do html dos paragrafos
+   let listaTagsP = document.getElementsByTagName("p");
+    listaTagsP[2].innerHTML = "R$100,00";
+    listaTagsP[5].innerHTML = "SABESP";
+    listaTagsP[7].innerHTML = "33.123.456/7891-23";
+    listaTagsP[9].innerHTML = "Banco do Brasil";
+
+    //talvez script de pra fazer (exemplo login maria)
+    listaTagsP[12].innerHTML = "Maria Santos";
+    listaTagsP[14].innerHTML = "987.654.321-02";
+    listaTagsP[16].innerHTML = "New Time Bank";
+</script>
+</body>
+</html>

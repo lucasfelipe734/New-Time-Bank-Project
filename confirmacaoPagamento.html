@@ -1,0 +1,80 @@
+<html lang="pt"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - New Bank Time</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /*div de entrada de dados*/
+        .pagar-container {
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 45px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .logo img {
+            max-width: 68px;
+        }
+        .seta {
+            float: left;
+            display: flex;
+            margin-bottom: 45px;
+            margin-top: 24px;
+        }
+        
+        .seta img {
+            max-width: 12px;
+        }
+        .pagamentoRealizado {
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 60px;
+            text-align: center;
+        }
+        p{
+            text-align: center;
+            text-decoration: underline;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pagar-container">
+            <div class="seta">
+                <img src="img/seta.png" alt="seta de voltar" >
+
+                </div>
+            <div class="logo">
+                <img src="img/logoB.png" alt="Logo New Time Bank">
+            </div>
+
+            <button
+            style="position: absolute; top: 240px; left: 0; width: 100%; height: 40px; background: transparent; border: none;"
+            onclick="window.location.href='pagar.html'"></button>
+
+            <div class="pagamentoRealizado">
+                PAGAMENTO REALIZADO COM SUCESSO!
+            </div>
+            <p onclick="window.location.href = 'comprovante.html'">Emitir Comprovante</p>
+</body>
+</html>
