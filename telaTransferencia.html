@@ -16,7 +16,7 @@
         }
         
         /*div do quadrado central*/
-        .pix-container {
+        .transferencia-container {
             background-color: rgb(255, 255, 255);
             border-radius: 10px;
             padding: 20px;
@@ -45,8 +45,8 @@
         .seta img {
             max-width: 12px;
         }
-        /*texto PIX no topo junto com a logo*/
-        .operacao-pix {
+        /*texto TRANFERÊNCIA no topo junto com a logo*/
+        .operacao-transferencia {
             color: rgb(0, 0, 0);
             font-size: 20px;
             font-weight: bold;
@@ -93,105 +93,142 @@
             border-radius: 10px;
             outline: none; /* Remove a borda de foco padrão */
         }
+        select{
+            width: 250px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            outline: none; /* Remove a borda de foco padrão */
+            color: gray
+        }
         /*linha abaixo do PIX*/
-        hr{
+        #h1{
             margin-top: 15px;
             margin-bottom: 45px;
             margin-left: 19px;
             height: 1px;
             background: #bd0f83;
         }
+        #h2{
+            margin-top: 10px;
+            margin-bottom: 15px;
+            margin-left: 19px;
+            height: 1px;
+            background: #bd0f83;
+        }
         button {
-            background-color: #bd0f83; /* Cor de rosa */
+            background-color: #bd0f83;
+            color: white;
             border: none;
-            border-radius: 10px; /* Borda arredondada */
-            padding: 5px 10px; /* Espaçamento interno */
-            margin-top: 20px; /* Um pouco mais pra baixo */
-            font-weight: arial; /* Texto mais negrito */
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 40px;
         }
 
         /* Estilo ao passar o mouse sobre o botão */
         button:hover {
             background-color: #ff1493; /* Cor de rosa mais escura ao passar o mouse */
         }
+        #p1{
+            text-align: left;
+            font-weight: bolder;
+            margin-top: 5px;
+            margin-bottom: 2px;
+            font-size: smaller;
+            margin-left: 10px;
+        }
+        #p2{
+            text-align: left;
+            font-weight: bolder;
+            margin-top: 5px;
+            margin-bottom: 2px;
+            font-size: smaller;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="pix-container">
+    <div class="transferencia-container">
             <div class="seta">
                 <img src="img/seta.png" alt="seta de voltar" id="seta" onclick="window.location.href = 'menu.html'">
                 </div>
-        <div class="operacao-pix">
-            ÁREA PIX
+        <div class="operacao-transferencia">
+            TRANFERÊNCIA
             <div class="logo">
             <img src="img/logoB.png" alt="Logo New Time Bank">
             </div>
         </div>
-        <hr size="2">
+        <hr id="h1"size="2">
         <form id="transferForm">
             <form>
-            <input type="text" id="chavePixRemetente" placeholder="Informe seu cpf">
-            <input type="text" id="chavePixDestinatario" placeholder="Informe a chave pix">
+            <p id="p1">DADOS DO REMETENTE</p>
+            <input type="text" id="numeroContaRemetente" placeholder="Número da conta">
+            <hr id="h2" size="1">
+            <p id="p2">DADOS DO FAVORECIDO</p>
+            <select id="instituição" name="Instituição">
+                <option value="New Time Bank">New Time Bank</option>
+                <option value="American Express">American Express</option>
+                <option value="Banco do Brasil">Banco do Brasil</option>
+              </select>
+              <select id="tipoConta" name="TipoConta">
+                <option value="Corrente">Conta Corrente</option>
+                <option value="Poupança">Conta Poupança</option>
+              </select>
+            <input type="text" id="agencia" placeholder="Número da Agência">
+            <input type="text" id="numeroContaDestinatario" placeholder="Número da Conta">
             <input type="text" id="valor" placeholder="Informe o valor">
             
             <button  
-            type="button" onclick="realizarTransferenciaPIX()">Realizar Transferência</button>
+            type="button" onclick="realizarTransferencia()">Realizar Transferência</button>
         </form>
         <p id="mensagem"></p>
     
         <script>
-            function realizarTransferenciaPIX() {
+            function realizarTransferencia() {
 
                 
-                const chavePixRemetente = document.getElementById('chavePixRemetente').value;
-                const chavePixDestinatario = document.getElementById('chavePixDestinatario').value;
+                const numeroContaRemetente = document.getElementById('numeroContaRemetente').value;
+                const numeroContaDestinatario = document.getElementById('numeroContaDestinatario').value;
                 const valor = parseFloat(document.getElementById('valor').value);
     
-                fetch('/transferencia-pix', {
+                fetch('/transferencia', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        chavePixRemetente,
-                        chavePixDestinatario,
+                        numeroContaRemetente,
+                        numeroContaDestinatario,
                         valor
                     })
                 })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        document.getElementById('mensagem').textContent = 'Transferência PIX realizada com sucesso!';
-                        
-  // Adicione um botão para ir para a página do comprovante PIX
-  const button = document.createElement('button');
-        button.textContent = 'Ver Comprovante PIX';
+                        document.getElementById('mensagem').textContent = 'Transferência realizada com sucesso!';
+     // Adicione um botão para ir para a página do comprovante PIX
+        const button = document.createElement('button');
+        button.textContent = 'Ver Comprovante TRANSFERÊNCIA';
         button.addEventListener('click', function() {
-            window.location.href = 'comprovantePix.html';
+            window.location.href = 'comprovanteTransferencia.html';
         });
-        
         // Adicione o botão ao seu documento
         const mensagemDiv = document.getElementById('mensagem');
         mensagemDiv.appendChild(button);
-                        
                     } else {
-                        document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência PIX: ' + data.error;
+                        document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência: ' + data.error;
                     }
                 })
                 .catch(error => {
-                    document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência PIX: ' + error;
+                    document.getElementById('mensagem').textContent = 'Erro ao realizar a transferência: ' + error;
                 });
-
-                    // Armazene o nomeDoCliente e saldoDoCliente no localStorage
-                    localStorage.setItem('comprovachavePixRemetente', chavePixRemetente);
-                    localStorage.setItem('comprovachavePixDestinatario', chavePixDestinatario);
-                    localStorage.setItem('comprovavalorPix', valor );
+                // Armazene o nomeDoCliente e saldoDoCliente no localStorage
+                localStorage.setItem('comprovaTransferRemetente', numeroContaRemetente);
+                    localStorage.setItem('comprovaTransferDestinatario', numeroContaDestinatario);
+                    localStorage.setItem('comprovavalorTransfer', valor );
             }
-            
-        
-
-
         </script>
     </body>
     </html>
-
